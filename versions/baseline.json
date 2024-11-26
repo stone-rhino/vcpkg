@@ -4884,6 +4884,10 @@
       "baseline": "2021-11-03",
       "port-version": 0
     },
+    "libnsq": {
+      "baseline": "master",
+      "port-version": 0
+    },
     "libobfuscate": {
       "baseline": "2024-02-11",
       "port-version": 0
