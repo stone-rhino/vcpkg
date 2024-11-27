@@ -1,0 +1,12 @@
+{
+  "name": "kyotocabinet",
+  "version": "1.2.80",
+  "description": "Kyoto Cabinet is a library of routines for managing a database.",
+  "homepage": "https://dbmx.net/kyotocabinet/",
+  "dependencies": [
+    {
+      "name": "vcpkg-cmake",
+      "host": true
+    }
+  ]
+}
