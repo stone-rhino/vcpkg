@@ -4188,6 +4188,10 @@
       "baseline": "2021-08-06",
       "port-version": 1
     },
+    "kyotocabinet": {
+      "baseline": "1.2.80",
+      "port-version": 0
+    },
     "lager": {
       "baseline": "2023-03-19",
       "port-version": 0
