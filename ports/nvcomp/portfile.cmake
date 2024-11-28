@@ -9,15 +9,21 @@ vcpkg_extract_source_archive(
     ARCHIVE "${ARCHIVE}"
 )
 
-set(VCPKG_POLICY_MISMATCHED_NUMBER_OF_BINARIES enabled)
+if(NOT VCPKG_BUILD_TYPE OR VCPKG_BUILD_TYPE STREQUAL debug)
+    file(INSTALL ${SOURCE_PATH}/lib/libnvcomp_cpu_static.a DESTINATION ${CURRENT_PACKAGES_DIR}/debug/lib)
+    file(INSTALL ${SOURCE_PATH}/lib/libnvcomp_device_static.a DESTINATION ${CURRENT_PACKAGES_DIR}/debug/lib)
+    file(INSTALL ${SOURCE_PATH}/lib/libnvcomp_static.a DESTINATION ${CURRENT_PACKAGES_DIR}/debug/lib)
+endif()
+if(NOT VCPKG_BUILD_TYPE OR VCPKG_BUILD_TYPE STREQUAL release)
+    file(INSTALL ${SOURCE_PATH}/lib/libnvcomp_cpu_static.a DESTINATION ${CURRENT_PACKAGES_DIR}/lib)
+    file(INSTALL ${SOURCE_PATH}/lib/libnvcomp_device_static.a DESTINATION ${CURRENT_PACKAGES_DIR}/lib)
+    file(INSTALL ${SOURCE_PATH}/lib/libnvcomp_static.a DESTINATION ${CURRENT_PACKAGES_DIR}/lib)
+endif()
 
 file(INSTALL ${SOURCE_PATH}/include/nvcomp DESTINATION ${CURRENT_PACKAGES_DIR}/include)
 file(INSTALL ${SOURCE_PATH}/include/nvcomp.h DESTINATION ${CURRENT_PACKAGES_DIR}/include)
 file(INSTALL ${SOURCE_PATH}/include/nvcomp.hpp DESTINATION ${CURRENT_PACKAGES_DIR}/include)
 file(INSTALL ${SOURCE_PATH}/include/nvcomp_export.h DESTINATION ${CURRENT_PACKAGES_DIR}/include)
-file(INSTALL ${SOURCE_PATH}/lib/libnvcomp_cpu_static.a DESTINATION ${CURRENT_PACKAGES_DIR}/lib)
-file(INSTALL ${SOURCE_PATH}/lib/libnvcomp_device_static.a DESTINATION ${CURRENT_PACKAGES_DIR}/lib)
-file(INSTALL ${SOURCE_PATH}/lib/libnvcomp_static.a DESTINATION ${CURRENT_PACKAGES_DIR}/lib)
 
 # Handle copyright
 file(INSTALL ${SOURCE_PATH}/LICENSE DESTINATION ${CURRENT_PACKAGES_DIR}/share/${PORT} RENAME copyright)
