@@ -5,6 +5,15 @@ To make changes modify this file instead:
 https://github.com/microsoft/vcpkg-docs/blob/main/vcpkg/readme/vcpkg-README.md
 -->
 
+# srhino packages
+
+| name | version | source |
+| ----------- | ----------- | ----------- |
+| cmdline | master | https://github.com/tanakh/cmdline |
+| libnsq | master | https://git.ouryun.cn/base/libnsq |
+| kyotocabinet | 1.2.80 | https://dbmx.net/kyotocabinet/pkg/kyotocabinet-1.2.80.tar.gz |
+| nvcomp | 4.0.0 | https://developer.download.nvidia.com/compute/nvcomp/4.0.0/local_installers/nvcomp-linux-x86_64-4.0.0-cuda12.5.tar.gz |
+
 [🌐 Read in a different language](https://learn.microsoft.com/locale/?target=https%3A%2F%2Flearn.microsoft.com%2Fvcpkg%2F)
 
 # vcpkg overview
