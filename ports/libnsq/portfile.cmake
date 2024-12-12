@@ -13,7 +13,11 @@ vcpkg_configure_make(
     COPY_SOURCE
 )
 
-vcpkg_build_make(BUILD_TARGET all)
+vcpkg_build_make(
+    BUILD_TARGET all
+    OPTIONS
+        "CFLAGS=-I${CURRENT_INSTALLED_DIR}/include/libev"
+)
 vcpkg_fixup_pkgconfig()
 
 # Install
