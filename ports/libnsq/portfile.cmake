@@ -1,10 +1,12 @@
-vcpkg_from_gitlab(
-    GITLAB_URL https://git.ouryun.cn/
-    OUT_SOURCE_PATH SOURCE_PATH
-    REPO base/libnsq
-    REF 570e8f1461b04e96e6a9dbf0161ff7e1243de827
-    SHA512 0160abd35d442584826f737807d7589d291532b495790cc32b532c866114468d0a1a3d17d0887266f7cfc4ffcfd5ca7dea744297fb736b77f3bb82ddc5bb5d03
-    HEAD_REF master
+vcpkg_download_distfile(ARCHIVE
+    URLS "https://git.ouryun.cn/base/libnsq/archive/570e8f1461b04e96e6a9dbf0161ff7e1243de827.tar.gz"
+    FILENAME "570e8f1461b04e96e6a9dbf0161ff7e1243de827.tar.gz"
+    SHA512 6ad85e599406ec06367a17a55df1ee7d6a469aeb16ed886664018b6f15c629ce18e76c7fb54df702b15d070a0547e5c9683d5c084a5abc57bf2cd152a5139d98
+)
+
+vcpkg_extract_source_archive(
+    SOURCE_PATH
+    ARCHIVE "${ARCHIVE}"
 )
 
 vcpkg_configure_make(
