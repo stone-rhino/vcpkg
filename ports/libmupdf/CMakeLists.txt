@@ -1,9 +1,11 @@
 cmake_minimum_required(VERSION 3.9)
 project(libmupdf)
+include(GNUInstallDirs)
 
 option(ENABLE_OCR "Build with OCR" OFF)
 
 set(CMAKE_DEBUG_POSTFIX d)
+set(PROJECT_VERSION 1.24.10)
 
 if(WIN32)
   execute_process(
@@ -16,13 +18,14 @@ else()
     COMMAND ${MAKE_EXE} "generate"
     WORKING_DIRECTORY "${CMAKE_CURRENT_SOURCE_DIR}"
   )
-endif() 
+endif()
 
+find_package(PkgConfig REQUIRED)
+pkg_check_modules(GUMBO REQUIRED gumbo)
 
 find_package(freetype NO_MODULE REQUIRED)
 find_package(JPEG REQUIRED)
-find_path(HARFBUZZ_INCLUDE hb.h PATH_SUFFIXES harfbuzz)
-find_library(HARFBUZZ_LIBRARIES harfbuzz)
+find_package(harfbuzz CONFIG REQUIRED)
 find_package(ZLIB REQUIRED)
 find_package(OpenJPEG CONFIG REQUIRED)
 find_library(JBIG2DEC_LIB NAMES jbig2decd jbig2dec)
@@ -58,7 +61,8 @@ endif()
 
 target_include_directories(libmupdf
   PUBLIC
-    include
+    $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
+    # $<INSTALL_INTERFACE:${CMAKE_INSTALL_INCLUDEDIR}>
   PRIVATE
     generated
     ${JPEG_INCLUDE_DIR}
@@ -76,18 +80,72 @@ target_link_libraries(libmupdf PRIVATE
   openjp2
   freetype
   ${JPEG_LIBRARIES}
-  ${HARFBUZZ_LIBRARIES}
+  harfbuzz::harfbuzz harfbuzz::harfbuzz-subset
   ${JBIG2DEC_LIB}
   ZLIB::ZLIB
+  ${GUMBO_LINK_LIBRARIES}
 )
+
+export(TARGETS libmupdf
+  FILE "${CMAKE_CURRENT_BINARY_DIR}/libmupdf-targets.cmake"
+  NAMESPACE libmupdf::
+)
+
+# Joins arguments and places the results in ${result_var}.
+function(join result_var)
+  set(result "")
+  foreach (arg ${ARGN})
+    set(result "${result}${arg}")
+  endforeach ()
+  set(${result_var} "${result}" PARENT_SCOPE)
+endfunction()
+
+# Sets a cache variable with a docstring joined from multiple arguments:
+#   set(<variable> <value>... CACHE <type> <docstring>...)
+# This allows splitting a long docstring for readability.
+function(set_verbose)
+  # cmake_parse_arguments is broken in CMake 3.4 (cannot parse CACHE) so use
+  # list instead.
+  list(GET ARGN 0 var)
+  list(REMOVE_AT ARGN 0)
+  list(GET ARGN 0 val)
+  list(REMOVE_AT ARGN 0)
+  list(REMOVE_AT ARGN 0)
+  list(GET ARGN 0 type)
+  list(REMOVE_AT ARGN 0)
+  join(doc ${ARGN})
+  set(${var} ${val} CACHE ${type} ${doc})
+endfunction()
+
+set_verbose(LIBMUPDF_INC_DIR ${CMAKE_INSTALL_INCLUDEDIR} CACHE STRING
+            "Installation directory for include files, a relative path that "
+            "will be joined with ${CMAKE_INSTALL_PREFIX} or an absolute path.")
 
 install(TARGETS libmupdf
-  RUNTIME DESTINATION bin
-  LIBRARY DESTINATION lib
-  ARCHIVE DESTINATION lib
+  EXPORT libmupdf-targets
+  RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR}
+  LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}
+  ARCHIVE DESTINATION ${CMAKE_INSTALL_LIBDIR}
+  # PUBLIC_HEADER DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}
 )
 
-if(BUILD_EXAMPLES)
-  add_executable(mu-office-test source/tests/mu-office-test.c)
-  target_link_libraries(mu-office-test PRIVATE libmupdf)
-endif()
+
+include(CMakePackageConfigHelpers)
+
+write_basic_package_version_file(
+  "${CMAKE_CURRENT_BINARY_DIR}/libmupdf-config-version.cmake"
+  VERSION ${PROJECT_VERSION}
+  COMPATIBILITY AnyNewerVersion
+)
+
+install(FILES
+  "${CMAKE_CURRENT_LIST_DIR}/libmupdf-config.cmake"
+  "${CMAKE_CURRENT_BINARY_DIR}/libmupdf-config-version.cmake"
+  DESTINATION ${CMAKE_INSTALL_LIBDIR}/cmake/libmupdf
+)
+
+install(EXPORT libmupdf-targets
+  FILE libmupdf-targets.cmake
+  NAMESPACE libmupdf::
+  DESTINATION ${CMAKE_INSTALL_LIBDIR}/cmake/libmupdf
+)
