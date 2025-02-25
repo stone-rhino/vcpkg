@@ -1,10 +1,9 @@
 vcpkg_check_linkage(ONLY_STATIC_LIBRARY)
 
-vcpkg_from_github(
+vcpkg_from_git(
     OUT_SOURCE_PATH SOURCE_PATH
-    REPO ArtifexSoftware/mupdf
-    REF "${VERSION}"
-    SHA512 b3a3e9ba000d920641647b936c01bf88d6df4f3cd5635240fc50402e7ed1663015deb5de09f51c698181cb33ea4c76441a5bdbace81d6e472275afd02d0f84d7
+    URL https://git.sr.ok/cpp-deps/mupdf.git
+    REF f1bcc4481c615b0c8abfa2c2602dc3367e1f4880
     HEAD_REF master
     PATCHES
         dont-generate-extract-3rd-party-things.patch
