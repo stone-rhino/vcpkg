@@ -1,5 +1,5 @@
 diff --git a/CMakeLists.txt b/CMakeLists.txt
-index 7e86706..f2bdc36 100644
+index 8ef4d3d..b1c9f85 100644
 --- a/CMakeLists.txt
 +++ b/CMakeLists.txt
 @@ -57,7 +57,9 @@ ELSEIF(WITH_MINIZIP_NG)
@@ -21,7 +21,7 @@ index 7e86706..f2bdc36 100644
 +  FIND_PACKAGE(EXPAT NAMES expat REQUIRED)
 +  SET(EXPAT_LIBRARIES expat::expat)
  ENDIF()
- #   dependancy: expatw (if wide library was requested)
+ #   dependency: expatw (if wide library was requested)
  IF(WITH_WIDE)
 @@ -225,13 +228,13 @@ FILE(WRITE "${CMAKE_CURRENT_BINARY_DIR}/xlsxio-config.cmake.in"
  IF (@WITH_LIBZIP@)
@@ -39,3 +39,12 @@ index 7e86706..f2bdc36 100644
  ENDIF()
  
  IF(@WITH_WIDE@)
+@@ -253,7 +256,7 @@ INSTALL(TARGETS ${ALLTARGETS_EXE}
+   RUNTIME DESTINATION bin
+ )
+ INSTALL(DIRECTORY include/
+-  DESTINATION include 
++  DESTINATION include
+   FILES_MATCHING PATTERN "xlsxio*.h"
+ )
+ IF(MINGW AND BUILD_SHARED)

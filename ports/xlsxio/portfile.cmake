@@ -1,8 +1,7 @@
-vcpkg_from_github(
+vcpkg_from_git(
     OUT_SOURCE_PATH SOURCE_PATH
-    REPO brechtsanders/xlsxio
-    REF "${VERSION}"
-    SHA512 67b9a4e275446f3ca08e91d31f05236855e761c06ed84ea3aea8c25a7cd6729191f6c95b9efe07392775a75e2713e7ec2c6d216b8d310e7b46bee531cccba8be
+    URL https://git.sr.ok/cpp-deps/xlsxio.git
+    REF b968a31b5ed70e6a24504b249e4c58f2fef0d1b0
     HEAD_REF master
     PATCHES
         fix-dependencies.patch
