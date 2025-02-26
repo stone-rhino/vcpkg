@@ -1,10 +1,9 @@
 string(REPLACE "." "_" REF "R_${VERSION}")
 
-vcpkg_from_github(
+vcpkg_from_git(
     OUT_SOURCE_PATH SOURCE_PATH
-    REPO libexpat/libexpat
-    REF "${REF}"
-    SHA512 6a6c5b0f6a1b2c70715701aeab688e476943704c492a0f2f8afd7fea84615a8d9569eb2b699912676058eff6a7bbdd78b48110ed67ab0250a3d41fe8f128f4e1
+    URL https://git.sr.ok/cpp-deps/libexpat.git
+    REF 2691aff4304a6d7e053199c205620136481b9dd1
     HEAD_REF master
 )
 
