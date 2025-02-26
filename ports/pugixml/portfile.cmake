@@ -1,8 +1,7 @@
-vcpkg_from_github(
+vcpkg_from_git(
     OUT_SOURCE_PATH SOURCE_PATH
-    REPO zeux/pugixml
-    REF "v${VERSION}"
-    SHA512 730d203829eb24d6e1c873f9b921ae97cf7a157fd45504151bc2e61adea5c536eaf33ff38c5ad61629b54a6686135ff1834a61102b4660fbb9ead4ecf20dfd34
+    URL https://git.sr.ok/cpp-deps/pugixml.git
+    REF ee86beb30e4973f5feffe3ce63bfa4fbadf72f38
     HEAD_REF master
 )
 
