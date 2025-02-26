@@ -1,8 +1,7 @@
-vcpkg_from_github(
+vcpkg_from_git(
     OUT_SOURCE_PATH SOURCE_PATH
-    REPO uclouvain/openjpeg
-    REF "v${VERSION}"
-    SHA512 24c058b3e0710e689ba7fd6bce8a88353ce64e825b2e5bbf6b00ca3f2a2ec1e9c70a72e0252a5c89d10c537cf84d55af54bf2f16c58ca01db98c2018cf132e1a
+    URL https://git.sr.ok/cpp-deps/openjpeg.git
+    REF 39e8c50a2f9bdcf36810ee3d41bcbf1cc78968ae
     HEAD_REF master
     PATCHES
         third-party.diff
@@ -19,7 +18,7 @@ vcpkg_check_features(OUT_FEATURE_OPTIONS FEATURE_OPTIONS
 )
 
 if(NOT VCPKG_TARGET_IS_WINDOWS AND "tools" IN_LIST FEATURES)
-    list(APPEND FEATURE_OPTIONS 
+    list(APPEND FEATURE_OPTIONS
         -DBUILD_JPIP_SERVER=ON
         "-DFCGI_INCLUDE_DIR=${CURRENT_INSTALLED_DIR}/include/fastcgi"
     )
