@@ -1,9 +1,8 @@
 # When this port is updated, the minizip port should be updated at the same time
-vcpkg_from_github(
+vcpkg_from_git(
     OUT_SOURCE_PATH SOURCE_PATH
-    REPO madler/zlib
-    REF v${VERSION}
-    SHA512 8c9642495bafd6fad4ab9fb67f09b268c69ff9af0f4f20cf15dfc18852ff1f312bd8ca41de761b3f8d8e90e77d79f2ccacd3d4c5b19e475ecf09d021fdfe9088
+    URL https://git.sr.ok/cpp-deps/zlib.git
+    REF 51b7f2abdade71cd9bb0e7a373ef2610ec6f9daf
     HEAD_REF master
     PATCHES
         0001-Prevent-invalid-inclusions-when-HAVE_-is-set-to-0.patch
