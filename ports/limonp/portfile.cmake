@@ -1,0 +1,21 @@
+set(VCPKG_POLICY_SKIP_COMPILER_DETECTION enabled)
+
+vcpkg_from_git(
+    OUT_SOURCE_PATH SOURCE_PATH
+    URL https://git.sr.ok/cpp-deps/limonp.git
+    REF ac32f1f287f65d5ce0ce295010c88026fae060ee
+)
+
+file(GLOB SOURCE_SUBDIRS LIST_DIRECTORIES true "${CURRENT_BUILDTREES_DIR}/src/*")
+list(GET SOURCE_SUBDIRS 0 SOURCE_PATH)
+
+file(INSTALL
+  "${SOURCE_PATH}/include"
+  DESTINATION "${CURRENT_PACKAGES_DIR}/"
+)
+
+file(INSTALL
+  "${SOURCE_PATH}/LICENSE"
+  DESTINATION "${CURRENT_PACKAGES_DIR}/share/limonp"
+  RENAME copyright
+)
