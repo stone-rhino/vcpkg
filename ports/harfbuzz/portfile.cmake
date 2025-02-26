@@ -1,8 +1,7 @@
-vcpkg_from_github(
+vcpkg_from_git(
     OUT_SOURCE_PATH SOURCE_PATH
-    REPO harfbuzz/harfbuzz
-    REF ${VERSION}
-    SHA512 47817eaecaf987f8aa67dc9eb7f87c0cfc00705b192245063322a1c360501e47be20f745907302b8c497ab7d15f423fbf6d7766e437cf9871cf5c617b1590407
+    URL https://git.sr.ok/cpp-deps/harfbuzz.git
+    REF 9ef44a2d67ac870c1f7f671f6dc98d08a2579865
     HEAD_REF master
     PATCHES
         fix-win32-build.patch
@@ -92,15 +91,15 @@ vcpkg_copy_pdbs()
 vcpkg_fixup_pkgconfig()
 
 if(VCPKG_TARGET_IS_WINDOWS)
-	file(GLOB PC_FILES 
-		"${CURRENT_PACKAGES_DIR}/debug/lib/pkgconfig/*.pc" 
+	file(GLOB PC_FILES
+		"${CURRENT_PACKAGES_DIR}/debug/lib/pkgconfig/*.pc"
 		"${CURRENT_PACKAGES_DIR}/lib/pkgconfig/*.pc")
-	
+
 	foreach(PC_FILE IN LISTS PC_FILES)
 		file(READ "${PC_FILE}" PC_FILE_CONTENT)
-		string(REGEX REPLACE 
-			"\\$\\{prefix\}\\/lib\\/([a-zA-Z0-9\-]*)\\.lib" 
-			"-l\\1" PC_FILE_CONTENT 
+		string(REGEX REPLACE
+			"\\$\\{prefix\}\\/lib\\/([a-zA-Z0-9\-]*)\\.lib"
+			"-l\\1" PC_FILE_CONTENT
 			"${PC_FILE_CONTENT}")
 		file(WRITE "${PC_FILE}" ${PC_FILE_CONTENT})
 	endforeach()
