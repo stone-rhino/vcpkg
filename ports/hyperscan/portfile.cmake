@@ -1,14 +1,22 @@
 vcpkg_check_linkage(ONLY_STATIC_LIBRARY)
 
-vcpkg_from_github(
+if(VCPKG_HOST_IS_LINUX AND (VCPKG_TARGET_ARCHITECTURE STREQUAL "arm64"))
+    set(HS_REF "ffae257207264b7c320a790e5d07473d231c05ff")
+    set(HS_HEAD_REF "aarch64")
+else()
+    set(HS_REF "bc3b191ab56055e8560c7cdc161c289c4d76e3d2")
+    set(HS_HEAD_REF "master")
+endif()
+
+vcpkg_from_git(
     OUT_SOURCE_PATH SOURCE_PATH
-    REPO intel/hyperscan
-    REF "v${VERSION}"
-    SHA512 328f21133161d16b36ebdc7f8b80a7afe7ca9e7e7433348e9bfa9acb5f3641522e8314beea1b219891f4e95f1392ff8036ebb87780fe808b8b4bd15a535e9509
-    HEAD_REF master
+    URL https://git.sr.ok/cpp-deps/hyperscan.git
+    REF ${HS_REF}
+    HEAD_REF ${HS_HEAD_REF}
     PATCHES
         0001-remove-Werror.patch
 )
+
 
 vcpkg_find_acquire_program(PYTHON3)
 
