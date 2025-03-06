@@ -1,8 +1,7 @@
-vcpkg_from_github(
+vcpkg_from_git(
     OUT_SOURCE_PATH SOURCE_PATH
-    REPO libarchive/libarchive
-    REF "v${VERSION}"
-    SHA512 95c6232d178b26daa0eeba43d64ea4235aa96fa279c85fff715ac5e6cc73b2e65f276770f91c3538cb8ca989380555169497628d73e120bfa52e12f657049ff0
+    URL https://git.sr.ok/cpp-deps/libarchive.git
+    REF b439d586f53911c84be5e380445a8a259e19114c
     HEAD_REF master
     PATCHES
         disable-warnings.patch
