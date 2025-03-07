@@ -1,8 +1,7 @@
-vcpkg_from_github(
+vcpkg_from_git(
     OUT_SOURCE_PATH SOURCE_PATH
-    REPO facebook/zstd
-    REF "v${VERSION}"
-    SHA512 ca12dffd86618ca008e1ecc79056c1129cb4e61668bf13a3cd5b2fa5c93bc9c92c80f64c1870c68b9c20009d9b3a834eac70db72242d5106125a1c53cccf8de8
+    URL https://git.sr.ok/cpp-deps/zstd.git
+    REF 794ea1b0afca0f020f4e57b6732332231fb23c70
     HEAD_REF dev
     PATCHES
         no-static-suffix.patch
