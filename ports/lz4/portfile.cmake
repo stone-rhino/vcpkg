@@ -1,8 +1,7 @@
-vcpkg_from_github(
+vcpkg_from_git(
     OUT_SOURCE_PATH SOURCE_PATH
-    REPO lz4/lz4
-    REF v${VERSION}
-    SHA512 8c4ceb217e6dc8e7e0beba99adc736aca8963867bcf9f970d621978ba11ce92855912f8b66138037a1d2ae171e8e17beb7be99281fea840106aa60373c455b28
+    URL https://git.sr.ok/cpp-deps/lz4.git
+    REF ebb370ca83af193212df4dcbadcc5d87bc0de2f0
     HEAD_REF dev
     PATCHES
         target-lz4-lz4.diff
