@@ -1,8 +1,7 @@
-vcpkg_from_github(
+vcpkg_from_git(
     OUT_SOURCE_PATH SOURCE_PATH
-    REPO tukaani-project/xz
-    REF "v${VERSION}"
-    SHA512 0f814f4282c87cb74a8383199c1e55ec1bf49519daaf07f7b376cb644770b75cc9257c809b661405fcfd6cda28c54d799c67eb9e169665c35b1b87529468085e
+    URL https://git.sr.ok/cpp-deps/xz.git
+    REF 9331ce4009ddc839f5191d234cc41b2d4797376d
     HEAD_REF master
     PATCHES
         build-tools.patch
