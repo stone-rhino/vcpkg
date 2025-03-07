@@ -6,7 +6,10 @@
   "license": "AGPL-3.0-only",
   "supports": "!osx",
   "dependencies": [
-    "freetype",
+    {
+      "name": "freetype",
+      "default-features": false
+    },
     "gumbo",
     "harfbuzz",
     "jbig2dec",
