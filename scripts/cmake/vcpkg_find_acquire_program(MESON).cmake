@@ -12,7 +12,7 @@ else() # Old behavior
     set(program_version 0.58.1)
     set(ref aeda7f249c4a5dbbecc52e44f382246a2377b5b0)
     set(paths_to_search "${DOWNLOADS}/tools/meson/meson-${ref}")
-    set(download_urls "https://github.com/mesonbuild/meson/archive/${ref}.tar.gz")
+    set(download_urls "https://file.sr.ok/CICD/cpp/meson-1.6.0.tar.gz")
     set(download_filename "meson-${ref}.tar.gz")
     set(download_sha512 18a012a45274dbb4582e99fd69d920f38831e788d9860f9553c64847bedb1c2010ae0b5c0ef4a4350c03f5e0f95aaa0395378e1208109b59640c1a70b1e202d2)
 endif()
