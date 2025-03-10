@@ -7,7 +7,7 @@ if ("apng" IN_LIST FEATURES)
         set(AWK_EXE_PATH "${MSYS_ROOT}/usr/bin")
         vcpkg_add_to_path("${AWK_EXE_PATH}")
     endif()
-    
+
     set(LIBPNG_APNG_PATCH_NAME "libpng-${VERSION}-apng.patch")
     vcpkg_download_distfile(LIBPNG_APNG_PATCH_ARCHIVE
         URLS "https://downloads.sourceforge.net/project/libpng-apng/libpng16/${VERSION}/${LIBPNG_APNG_PATCH_NAME}.gz"
@@ -26,12 +26,10 @@ if ("apng" IN_LIST FEATURES)
     endif()
 endif()
 
-vcpkg_from_github(
+vcpkg_from_git(
     OUT_SOURCE_PATH SOURCE_PATH
-    REPO glennrp/libpng
-    REF v${VERSION}
-    SHA512 c023bc7dcf3d0ea045a63204f2266b2c53b601b99d7c5f5a7b547bc9a48b205a277f699eefa47f136483f495175b226527097cd447d6b0fbceb029eb43638f63
-    HEAD_REF master
+    URL https://git.sr.ok/cpp-deps/libpng.git
+    REF f5e92d76973a7a53f517579bc95d61483bf108c0
     PATCHES
         "${LIBPNG_APNG_PATCH_PATH}"
         cmake.patch
