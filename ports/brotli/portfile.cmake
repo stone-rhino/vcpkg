@@ -1,9 +1,7 @@
-vcpkg_from_github(
+vcpkg_from_git(
     OUT_SOURCE_PATH SOURCE_PATH
-    REPO google/brotli
-    REF v${VERSION} # v1.1.0 
-    SHA512 6eb280d10d8e1b43d22d00fa535435923c22ce8448709419d676ff47d4a644102ea04f488fc65a179c6c09fee12380992e9335bad8dfebd5d1f20908d10849d9
-    HEAD_REF master
+    URL https://git.sr.ok/cpp-deps/brotli.git
+    REF ed738e842d2fbdf2d6459e39267a633c4a9b2f5d
     PATCHES
         install.patch
         fix-arm-uwp.patch
