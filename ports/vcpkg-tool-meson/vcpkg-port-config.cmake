@@ -12,7 +12,7 @@ set(program_name meson)
 set(search_names meson meson.py)
 set(ref "${program_version}")
 set(path_to_search "${DOWNLOADS}/tools/meson-${program_version}-${meson_short_hash}")
-set(download_urls "https://github.com/mesonbuild/meson/archive/${ref}.tar.gz")
+set(download_urls "https://file.sr.ok/CICD/cpp/meson-1.6.0.tar.gz")
 set(download_filename "meson-${ref}.tar.gz")
 set(download_sha512 8cbb4af0d057e06c4efd0eb2544aa93cfa73410114f85f346e9fbf92af776f5bb5121f557d228b7cdab7f0ea7963e057b223f17036e2f36f55416fba43683248)
 
