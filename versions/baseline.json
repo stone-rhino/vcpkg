@@ -4716,6 +4716,10 @@
       "baseline": "2023-05-13",
       "port-version": 0
     },
+    "libinjection": {
+      "baseline": "master",
+      "port-version": 0
+    },
     "libirecovery": {
       "baseline": "2023-05-13",
       "port-version": 2
