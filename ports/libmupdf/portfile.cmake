@@ -7,6 +7,7 @@ vcpkg_from_git(
     HEAD_REF master
     PATCHES
         dont-generate-extract-3rd-party-things.patch
+        fix_miss_object.patch
 )
 
 file(COPY "${CMAKE_CURRENT_LIST_DIR}/CMakeLists.txt" DESTINATION "${SOURCE_PATH}")

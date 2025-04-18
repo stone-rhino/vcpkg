@@ -1,0 +1,34 @@
+diff --git a/source/pdf/pdf-interpret.c b/source/pdf/pdf-interpret.c
+index e4778beee..48dfc059e 100644
+--- a/source/pdf/pdf-interpret.c
++++ b/source/pdf/pdf-interpret.c
+@@ -894,6 +894,14 @@ pdf_process_stream(fz_context *ctx, pdf_processor *proc, pdf_csi *csi, fz_stream
+ 		{
+ 			do
+ 			{
++				if (ctx->user) {
++					int *miss_cnt = ctx->user;
++					int *max_miss_cnt = miss_cnt + 1;
++					if (*miss_cnt > *max_miss_cnt)
++					{
++						fz_throw(ctx, FZ_ERROR_ABORT, "missing cache object more than %d times", *max_miss_cnt);
++					}
++				}
+ 				/* Check the cookie */
+ 				if (cookie)
+ 				{
+diff --git a/source/pdf/pdf-xref.c b/source/pdf/pdf-xref.c
+index f200e69e8..d6c612f27 100644
+--- a/source/pdf/pdf-xref.c
++++ b/source/pdf/pdf-xref.c
+@@ -2708,6 +2708,10 @@ pdf_resolve_indirect(fz_context *ctx, pdf_obj *ref)
+ 			entry = pdf_cache_object(ctx, doc, num);
+ 		fz_catch(ctx)
+ 		{
++			if (ctx->user) {
++				int *miss_cnt = ctx->user;
++				*miss_cnt += 1;
++			}
+ 			fz_rethrow_if(ctx, FZ_ERROR_TRYLATER);
+ 			fz_rethrow_if(ctx, FZ_ERROR_SYSTEM);
+ 			fz_rethrow_if(ctx, FZ_ERROR_REPAIRED);
