@@ -2,7 +2,7 @@
   "name": "libinjection",
   "version-string": "master",
   "description": "SQL / SQLI tokenizer parser analyzer.",
-  "homepage": "https://git.sr.ok/cpp-deps/libinjection",
+  "homepage": "https://github.com/libinjection/libinjection.git",
   "dependencies": [
     {
       "name": "vcpkg-cmake",
