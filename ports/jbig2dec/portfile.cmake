@@ -1,9 +1,10 @@
 vcpkg_check_linkage(ONLY_STATIC_LIBRARY)
 
-vcpkg_from_git(
+vcpkg_from_github(
     OUT_SOURCE_PATH SOURCE_PATH
-    URL https://git.sr.ok/cpp-deps/jbig2dec.git
-    REF 1d1347e38a55e657dcc4c8f1c77bb3a26bfc9ff3
+    REPO ArtifexSoftware/jbig2dec
+    REF "${VERSION}"
+    SHA512 8b8a28b93b23e4284ca229e6c8935fd161ce5c597f7470a46ec06a3241d0ac23cf921aecdd4e0c1bd3c904591409054236f2ce25b6d8ae40db742559c7f4dbe9
     HEAD_REF master
 )
 
