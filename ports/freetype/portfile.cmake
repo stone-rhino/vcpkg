@@ -4,10 +4,12 @@ endif()
 
 string(REPLACE "." "-" VERSION_HYPHEN "${VERSION}")
 
-vcpkg_from_git(
+vcpkg_from_gitlab(
+    GITLAB_URL https://gitlab.freedesktop.org/
     OUT_SOURCE_PATH SOURCE_PATH
-    URL https://git.sr.ok/cpp-deps/freetype.git
-    REF 42608f77f20749dd6ddc9e0536788eaad70ea4b5
+    REPO freetype/freetype
+    REF "VER-${VERSION_HYPHEN}"
+    SHA512  fccfaa15eb79a105981bf634df34ac9ddf1c53550ec0b334903a1b21f9f8bf5eb2b3f9476e554afa112a0fca58ec85ab212d674dfd853670efec876bacbe8a53
     HEAD_REF master
     PATCHES
         0003-Fix-UWP.patch
