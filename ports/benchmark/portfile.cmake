@@ -1,7 +1,8 @@
-vcpkg_from_git(
+vcpkg_from_github(
     OUT_SOURCE_PATH SOURCE_PATH
-    URL https://git.sr.ok/cpp-deps/benchmark.git
-    REF 12235e24652fc7f809373e7c11a5f73c5763fc4c
+    REPO google/benchmark
+    REF "v${VERSION}"
+    SHA512 0e91e0e5a2222d7650fd8bd9cafb2f0e7c1689cd1b87b2cc529c738db12bfef31162aa5a4da78f7b0aa7f0101dc08b626802c58d39862458f82f9fea9316ca25
     HEAD_REF main
 )
 
