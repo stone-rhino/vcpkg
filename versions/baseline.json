@@ -4554,7 +4554,7 @@
     },
     "libbf": {
       "baseline": "1.0.0",
-      "port-version": 4
+      "port-version": 5
     },
     "libbson": {
       "baseline": "1.30.3",

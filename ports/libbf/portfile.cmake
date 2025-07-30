@@ -21,6 +21,7 @@ vcpkg_from_github(
     PATCHES
         "${STDEXCEPT_PATCH}"
         "${ALGORITHM_PATCH}"
+        patches/fix-compile-error.patch
 )
 
 vcpkg_cmake_configure(
