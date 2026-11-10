@@ -1,0 +1,16 @@
+{
+  "name": "sregex",
+  "version": "1.0.0",
+  "description": "High-performance C++ library for multi-pattern regular expression matching",
+  "dependencies": [
+    "antlr4",
+    {
+      "name": "vcpkg-cmake",
+      "host": true
+    },
+    {
+      "name": "vcpkg-cmake-config",
+      "host": true
+    }
+  ]
+}
